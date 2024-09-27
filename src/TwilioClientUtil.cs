@@ -5,18 +5,19 @@ using Soenneker.Twilio.Client.Abstract;
 using Soenneker.Utils.AsyncSingleton;
 using System.Threading;
 using System;
+using System.Threading.Tasks;
 using Twilio;
 
 namespace Soenneker.Twilio.Client;
 
 /// <inheritdoc cref="ITwilioClientUtil"/>
-public class TwilioClientUtil: ITwilioClientUtil
+public class TwilioClientUtil : ITwilioClientUtil
 {
-    private readonly AsyncSingleton<object> _client;
+    private readonly AsyncSingleton _client;
 
     public TwilioClientUtil(IConfiguration configuration, ILogger<TwilioClientUtil> logger)
     {
-        _client = new AsyncSingleton<object>((_, _) =>
+        _client = new AsyncSingleton((_, _) =>
         {
             logger.LogDebug("Initializing Twilio client...");
 
@@ -29,9 +30,14 @@ public class TwilioClientUtil: ITwilioClientUtil
         });
     }
 
-    public void Init(CancellationToken cancellationToken = default)
+    public void InitSync(CancellationToken cancellationToken = default)
     {
-        _client.GetSync(cancellationToken);
+        _client.InitSync(cancellationToken);
+    }
+
+    public ValueTask Init(CancellationToken cancellationToken = default)
+    {
+        return _client.Init(cancellationToken);
     }
 
     public void Dispose()
@@ -39,5 +45,12 @@ public class TwilioClientUtil: ITwilioClientUtil
         GC.SuppressFinalize(this);
 
         _client.Dispose();
+    }
+
+    public ValueTask DisposeAsync()
+    {
+        GC.SuppressFinalize(this);
+
+        return _client.DisposeAsync();
     }
 }
