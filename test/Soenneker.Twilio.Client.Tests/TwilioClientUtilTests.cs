@@ -2,7 +2,6 @@ using Soenneker.Twilio.Client.Abstract;
 using Soenneker.Tests.FixturedUnit;
 using Xunit;
 
-
 namespace Soenneker.Twilio.Client.Tests;
 
 [Collection("Collection")]
@@ -13,5 +12,11 @@ public class TwilioClientUtilTests : FixturedUnitTest
     public TwilioClientUtilTests(Fixture fixture, ITestOutputHelper output) : base(fixture, output)
     {
         _util = Resolve<ITwilioClientUtil>(true);
+    }
+
+    [Fact]
+    public void Default()
+    {
+
     }
 }
