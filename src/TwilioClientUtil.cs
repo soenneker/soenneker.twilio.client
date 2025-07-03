@@ -11,7 +11,7 @@ using Twilio;
 namespace Soenneker.Twilio.Client;
 
 /// <inheritdoc cref="ITwilioClientUtil"/>
-public class TwilioClientUtil : ITwilioClientUtil
+public sealed class TwilioClientUtil : ITwilioClientUtil
 {
     private readonly AsyncSingleton _client;
 
@@ -42,15 +42,11 @@ public class TwilioClientUtil : ITwilioClientUtil
 
     public void Dispose()
     {
-        GC.SuppressFinalize(this);
-
         _client.Dispose();
     }
 
     public ValueTask DisposeAsync()
     {
-        GC.SuppressFinalize(this);
-
         return _client.DisposeAsync();
     }
 }
