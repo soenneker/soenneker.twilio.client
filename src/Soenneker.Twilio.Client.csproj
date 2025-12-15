@@ -48,6 +48,6 @@
 		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="10.0.1" />
 		<PackageReference Include="Soenneker.Utils.AsyncSingleton" Version="4.0.720" />
 		<PackageReference Include="Twilio" Version="7.13.8" />
-		<PackageReference Include="Soenneker.Extensions.Configuration" Version="4.0.742" />
+		<PackageReference Include="Soenneker.Extensions.Configuration" Version="4.0.743" />
 	</ItemGroup>
 </Project>
