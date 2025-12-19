@@ -2,10 +2,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 using Soenneker.Extensions.Configuration;
 using Soenneker.Twilio.Client.Abstract;
-using Soenneker.Utils.AsyncSingleton;
 using System.Threading;
-using System;
 using System.Threading.Tasks;
+using Soenneker.Utils.AsyncInitializers;
 using Twilio;
 
 namespace Soenneker.Twilio.Client;
@@ -13,11 +12,11 @@ namespace Soenneker.Twilio.Client;
 /// <inheritdoc cref="ITwilioClientUtil"/>
 public sealed class TwilioClientUtil : ITwilioClientUtil
 {
-    private readonly AsyncSingleton _client;
+    private readonly AsyncInitializer _client;
 
     public TwilioClientUtil(IConfiguration configuration, ILogger<TwilioClientUtil> logger)
     {
-        _client = new AsyncSingleton((_, _) =>
+        _client = new AsyncInitializer( () =>
         {
             logger.LogDebug("Initializing Twilio client...");
 
@@ -25,8 +24,6 @@ public sealed class TwilioClientUtil : ITwilioClientUtil
             var authToken = configuration.GetValueStrict<string>("Twilio:AuthToken");
 
             TwilioClient.Init(accountSid, authToken);
-
-            return new object();
         });
     }
 
