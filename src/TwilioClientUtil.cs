@@ -4,7 +4,7 @@ using Soenneker.Extensions.Configuration;
 using Soenneker.Twilio.Client.Abstract;
 using System.Threading;
 using System.Threading.Tasks;
-using Soenneker.Utils.AsyncInitializers;
+using Soenneker.Asyncs.Initializers;
 using Twilio;
 
 namespace Soenneker.Twilio.Client;
@@ -16,7 +16,7 @@ public sealed class TwilioClientUtil : ITwilioClientUtil
 
     public TwilioClientUtil(IConfiguration configuration, ILogger<TwilioClientUtil> logger)
     {
-        _client = new AsyncInitializer( () =>
+        _client = new AsyncInitializer(() =>
         {
             logger.LogDebug("Initializing Twilio client...");
 
