@@ -49,6 +49,6 @@
     <ItemGroup>
         <PackageReference Include="Soenneker.Asyncs.Initializers" Version="4.0.44" />
         <PackageReference Include="Twilio" Version="7.14.3" />
-        <PackageReference Include="Soenneker.Extensions.Configuration" Version="4.0.804" />
+        <PackageReference Include="Soenneker.Extensions.Configuration" Version="4.0.805" />
     </ItemGroup>
 </Project>
