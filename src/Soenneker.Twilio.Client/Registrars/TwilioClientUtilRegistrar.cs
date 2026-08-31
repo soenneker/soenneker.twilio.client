@@ -5,7 +5,7 @@ using Soenneker.Twilio.Client.Abstract;
 namespace Soenneker.Twilio.Client.Registrars
 {
     /// <summary>
-    /// An async thread-safe singleton for the Twilio client
+    /// Registers process-wide Twilio SDK initialization.
     /// </summary>
     public static class TwilioClientUtilRegistrar
     {
