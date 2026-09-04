@@ -9,6 +9,7 @@ using Twilio;
 
 namespace Soenneker.Twilio.Client;
 
+/// <inheritdoc cref="ITwilioClientUtil" />
 public sealed class TwilioClientUtil : ITwilioClientUtil
 {
     private readonly AsyncInitializer _client;
