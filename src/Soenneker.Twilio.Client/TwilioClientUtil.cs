@@ -20,8 +20,8 @@ public sealed class TwilioClientUtil : ITwilioClientUtil
         {
             logger.LogDebug("Initializing Twilio client...");
 
-            var accountSid = configuration.GetValueStrict<string>("Twilio:AccountSid");
-            var authToken = configuration.GetValueStrict<string>("Twilio:AuthToken");
+            var accountSid = configuration.GetStringStrict("Twilio:AccountSid");
+            var authToken = configuration.GetStringStrict("Twilio:AuthToken");
 
             TwilioClient.Init(accountSid, authToken);
         });
